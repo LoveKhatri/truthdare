@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Truth Dare</title>
+    <style>
+        body {
+            font-size: 16px;
+            box-sizing: border-box;
+            font-family: Ubuntu, sans-serif;
+        }
+
+        div:hover {
+            cursor: pointer;
+            ;
+        }
+
+        .box {
+            float: left;
+            margin-right: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 2em;
+            border-radius: 20px;
+            height: 220px;
+            width: 300px;
+
+        }
+
+        .truth {
+            background-color: greenyellow;
+            color: green;
+        }
+
+        .dare {
+            background-color: lightcoral;
+            color: rgb(255, 68, 0);
+        }
+
+        .wyr {
+            background-color: lightseagreen;
+            color: seagreen;
+        }
+
+        .nhie {
+            background-color: lightblue;
+            color: blue;
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .box {
+                width: 46%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .box {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .box {
+                width: 45%;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="element">
+            <div class="truth box" id="truth" onclick="truth()">
+                <h2>Truth</h2>
+            </div>
+        </div>
+        <div class="element">
+            <div class="dare box" id="dare" onclick="dare()">
+                <h2>Dare</h2>
+            </div>
+        </div>
+        <div class="element">
+            <div class="wyr box" id="wyr" onclick="wyr()">
+                <h2>Would you rather</h2>
+            </div>
+        </div>
+        <div class="element">
+            <div class="nhie box" id="nhie" onclick="nhie()">
+                <h2>Never have I ever</h2>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function myFunction() {
+            document.getElementById("demo").innerHTML = "red";
+        }
+        const api_url = "https://api.truthordarebot.xyz/v1/truth";
+        async function truth() {
+            const response = await fetch(`https://api.truthordarebot.xyz/v1/truth`)
+            var data = await response.json();
+            console.log(data)
+            document.getElementById("truth").innerHTML = data.question
+        }
+        async function dare() {
+            const response = await fetch(`https://api.truthordarebot.xyz/v1/dare`)
+            var data = await response.json();
+            console.log(data)
+            document.getElementById("dare").innerHTML = data.question
+        }
+        async function wyr() {
+            const response = await fetch(`https://api.truthordarebot.xyz/v1/wyr`)
+            var data = await response.json();
+            console.log(data)
+            document.getElementById("wyr").innerHTML = data.question
+        }
+        async function nhie() {
+            const response = await fetch(`https://api.truthordarebot.xyz/v1/nhie`)
+            var data = await response.json();
+            console.log(data)
+            document.getElementById("nhie").innerHTML = data.question
+        }
+    </script>
+</body>
+
+</html>
